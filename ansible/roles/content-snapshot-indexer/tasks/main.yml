@@ -4,6 +4,7 @@
     path: '{{ content_snapshot_path }}'
     state: directory
   become: yes
+  become_user: root
   tags:
     - deploy
 
