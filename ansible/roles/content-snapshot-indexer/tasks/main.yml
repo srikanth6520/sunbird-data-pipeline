@@ -54,12 +54,14 @@
 
 - name: Unarchive etl job script
   become: yes
+  become_user: root
   unarchive: src={{ content_snapshot_path }}/{{ content_snapshot_distribuction_name }} dest={{ content_snapshot_jar_path }} copy=no group={{ analytics_group }} owner={{ analytics_user }}
   tags:
     - deploy
 
 - name: Copy etl-jobs jar file
   become: yes
+  become_user: root
   copy:
     src: "{{ content_snapshot_jar_name }}"
     dest: "{{ content_snapshot_jar_path }}"
@@ -70,6 +72,7 @@
 
 - name: Ensure removing config directory
   become: yes
+  become_user: root
   file:
     path: '{{ content_snapshot_path }}/config'
     state: absent
@@ -81,11 +84,13 @@
     path: "{{ content_snapshot_path }}/config"
     state: directory
   become: yes
+  become_user: root
   tags:
     - execute-script
 
 - name: Ensure copying all conf files from the templates/conf folder
   become: yes
+  become_user: root
   template:
     src: "conf/{{ item }}.j2"
     dest: "{{ content_snapshot_path }}/config/{{ item }}.conf"
@@ -97,6 +102,7 @@
 
 - name: Ensure removing scripts directory
   become: yes
+  become_user: root
   file:
     path: '{{ content_snapshot_path }}/scripts'
     state: absent
@@ -106,15 +112,18 @@
 
 - name: Create scripts directory
   become: yes
+  become_user: root
   file:
     path: '{{ content_snapshot_path }}/scripts'
     state: directory
   become: yes
+  become_user: root
   tags:
     - execute-script
 
 - name: Ensure copying all script files from the templates/script dir
   become: yes
+  become_user: root
   template:
     src: "scripts/{{ item }}.j2"
     dest: "{{ content_snapshot_path }}/scripts/{{ item }}.sh"
