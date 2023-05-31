@@ -35,7 +35,7 @@
   tags:
     - framework
 
-- name: Copy Framework Library to azure blob
+- name: Copy Framework Library to aws blob
   command: aws storage blob upload --overwrite --debug -c {{ bucket }} --name models-{{ model_version }}/{{ analytics_core_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ analytics_core_artifact }}
   async: 3600
   poll: 10
