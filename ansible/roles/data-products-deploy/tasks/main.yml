@@ -1,7 +1,7 @@
 ## Data products deployment ##
-- name: Ensure azure blob storage container exists
-  command: az storage container create --name {{ bucket }}
-  when: dp_object_store_type == "azure"
+- name: Ensure aws blob storage container exists
+  command: aws storage container create --name {{ bucket }}
+  when: dp_object_store_type == "aws"
   tags:
     - always
 
@@ -10,8 +10,8 @@
   tags:
     - dataproducts
 
-- name: Copy Core Data Products to azure blob
-  command: az storage blob upload --overwrite -c {{ bucket }} --name models-{{ model_version }}/{{ analytics_batch_module_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ analytics_batch_module_artifact }}
+- name: Copy Core Data Products to aws blob
+  command: aws storage blob upload --overwrite -c {{ bucket }} --name models-{{ model_version }}/{{ analytics_batch_module_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ analytics_batch_module_artifact }}
   async: 3600
   poll: 10
   tags:
@@ -23,8 +23,8 @@
   tags:
     - ed-dataproducts
 
-- name: Copy Ed Data Products to azure blob
-  command: az storage blob upload --overwrite -c {{ bucket }} --name models-{{ model_version }}/data-products-1.0.jar -f {{ analytics.home }}/models-{{ model_version }}/data-products-1.0/data-products-1.0.jar
+- name: Copy Ed Data Products to aws blob
+  command: aws storage blob upload --overwrite -c {{ bucket }} --name models-{{ model_version }}/data-products-1.0.jar -f {{ analytics.home }}/models-{{ model_version }}/data-products-1.0/data-products-1.0.jar
   async: 3600
   poll: 10
   tags:
@@ -36,7 +36,7 @@
     - framework
 
 - name: Copy Framework Library to azure blob
-  command: az storage blob upload --overwrite --debug -c {{ bucket }} --name models-{{ model_version }}/{{ analytics_core_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ analytics_core_artifact }}
+  command: aws storage blob upload --overwrite --debug -c {{ bucket }} --name models-{{ model_version }}/{{ analytics_core_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ analytics_core_artifact }}
   async: 3600
   poll: 10
   tags:
@@ -47,8 +47,8 @@
   tags:
     - framework  
 
-- name: Copy Scruid Library to azure blob
-  command: az storage blob upload --overwrite -c {{ bucket }} --name models-{{ model_version }}/{{ scruid_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ scruid_artifact }}
+- name: Copy Scruid Library to aws blob
+  command: aws storage blob upload --overwrite -c {{ bucket }} --name models-{{ model_version }}/{{ scruid_artifact }} -f {{ analytics.home }}/models-{{ model_version }}/{{ scruid_artifact }}
   async: 3600
   poll: 10
   tags:
@@ -96,8 +96,8 @@
   tags:
     - framework-spark-cluster       
 
-- name: Copy configuration file to azure blob
-  command: az storage blob upload --overwrite -c {{ bucket }} -f {{ analytics.home }}/models-{{ model_version }}/application.conf --name models-{{ model_version }}/application.conf
+- name: Copy configuration file to aws blob
+  command: aws storage blob upload --overwrite -c {{ bucket }} -f {{ analytics.home }}/models-{{ model_version }}/application.conf --name models-{{ model_version }}/application.conf
   async: 3600
   poll: 10
   tags:
