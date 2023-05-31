@@ -102,7 +102,6 @@
 
 - name: Ensure removing scripts directory
   become: yes
-  become_user: root
   file:
     path: '{{ content_snapshot_path }}/scripts'
     state: absent
