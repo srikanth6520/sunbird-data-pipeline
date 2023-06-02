@@ -8,7 +8,7 @@
     AWS_STORAGE_ACCOUNT: "{{sunbird_private_storage_account_name}}"
     AWS_STORAGE_KEY: "{{sunbird_private_storage_account_key}}"
     AWS_ACCESS_KEY_ID: "{{cloud_private_storage_accountname}}"
-    AWS_SECRET_ACCESS_KEY: "{{cloud_private_storage_endpoint}}"
+    AWS_SECRET_ACCESS_KEY: "{{cloud_management_storage_secret}}"
     AWS_DEFAULT_REGION: "{{cloud_private_storage_region}}"
   roles:
    - data-products-deploy
