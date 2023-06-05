@@ -97,7 +97,7 @@
     - framework-spark-cluster       
 
 - name: Copy configuration file to aws blob
-  command: aws s3 cp {{ analytics.home }}/models-{{ model_version }}/lernapplication.conf s3://models-{{ model_version }}/lernapplication.conf --acl bucket-owner-full-control
+  command: aws s3 cp {{ analytics.home }}/models-{{ model_version }}/application.conf s3://models-{{ model_version }}/application.conf --acl bucket-owner-full-control
   async: 3600
   poll: 10
   tags:
