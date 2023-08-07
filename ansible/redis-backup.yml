@@ -3,5 +3,5 @@
   vars_files:
     - ['{{inventory_dir}}/secrets.yml']
   roles:
-   - redis-backup
+   - redis-multiprocess-backup
   run_once: true
