@@ -1,6 +1,6 @@
 ---
 - name: wait for zookeeper port
-  wait_for: host={{zookeeper_listen_address| default('10.0.1.5')}} port={{zookeeper_port}} state=started timeout=30
+  wait_for: host={{zookeeper_listen_address| default('localhost')}} port={{zookeeper_port}} state=started timeout=30
   when: verify
 
 - name: Waiting 1m for kafka to settle
@@ -12,5 +12,5 @@
   become: yes
 
 - name: wait for kafka port
-  wait_for: host={{kafka_listen_address| default('10.0.1.4')}} port={{kafka_port}} state=started timeout=30
+  wait_for: host={{kafka_listen_address| default('localhost')}} port={{kafka_port}} state=started timeout=30
   when: verify
