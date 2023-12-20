@@ -13,7 +13,8 @@
   copy:
      content: "{{ (lookup('vars', item + '_context' , default={}) | combine(vars[(item + '_json')])) | to_json(indent=4) }}"
      dest: "{{druid_home}}/{{item}}.json"
-  become_user: "{{remote_user}}"
+  become: yes
+  become_user: root
   with_items: "{{ ingestion_task_names.split(',')|list }}"
   tags: start-task
 
